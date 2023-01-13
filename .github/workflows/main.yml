@@ -35,8 +35,8 @@ jobs:
     - name: Deploy on DockerHub
       uses: docker/build-push-action@v3
       with:
-        context: .
-        file: ./microservices/supes-monolith/src/main/docker/Dockerfile.jvm
+        context: ./microservices/supes-monolith/
+        file: src/main/docker/Dockerfile.jvm
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/supes:latest
     
