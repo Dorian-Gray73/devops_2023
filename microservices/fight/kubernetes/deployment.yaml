@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fight-monolith
+  labels:
+    app: fight-monolith
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: fight-monolith
+  template:
+    metadata:
+      labels:
+        app: fight-monolith
+    spec:
+      containers:
+      - name: fight-monolith
+        image: workshop/fight-monolith:1.1
+        ports:
+        - name: http
+          containerPort: 8080
+        imagePullPolicy: IfNotPresent
+        
