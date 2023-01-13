@@ -4,6 +4,8 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.util.Random;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
 
 @Entity
 public class Hero extends PanacheEntity {
@@ -16,7 +18,9 @@ public class Hero extends PanacheEntity {
     @Column(columnDefinition = "TEXT")
     public String powers;
 
-    public static Hero findRandom() {
+    @GET
+    @Path("/hero")
+    public Hero findRandom() {
         long countHeroes = Hero.count();
         Random random = new Random();
         int randomHero = random.nextInt((int) countHeroes);
