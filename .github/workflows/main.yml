@@ -37,7 +37,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: build image
-      run:  docker build -f src/main/docker/Dockerfile.jvm -t supes ./microservices/supes-monolith
+      run:  docker build -f ./microservices/supes-monolith/src/main/docker/Dockerfile.jvm -t supes ./microservices/supes-monolith
     - name: push
       run: docker push ${{ secrets.DOCKER_USERNAME }}/supes:latest .
 
