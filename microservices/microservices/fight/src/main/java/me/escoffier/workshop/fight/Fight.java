@@ -1,4 +1,4 @@
-package me.escoffier.workshop.supes;
+package me.escoffier.workshop.fight;
 
 public class Fight {
 

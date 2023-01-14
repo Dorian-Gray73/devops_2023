@@ -1,7 +1,9 @@
-package me.escoffier.workshop.supes;
+package me.escoffier.workshop.fight;
 
 import org.jboss.logging.Logger;
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -13,19 +15,22 @@ import java.util.Random;
 public class FightResource {
 
     private static final Logger LOGGER = Logger.getLogger(FightResource.class);
-
+    @Inject @RestClient HeroService heroService;
+    @Inject @RestClient VillainService villainService;
     @GET
     @Path("/heroes/random")
+    @Produces(MediaType.TEXT_PLAIN)
     public Hero getRandomHero() {
-        Hero hero = Hero.findRandom();
+        Hero hero = heroService.getHero();
         LOGGER.debug("Found random hero " + hero);
         return hero;
     }
 
     @GET
     @Path("/villains/random")
+    @Produces(MediaType.TEXT_PLAIN)
     public Villain getRandomVillain() {
-        Villain villain = Villain.findRandom();
+        Villain villain = villainService.getVillain();
         LOGGER.debug("Found random villain " + villain);
         return villain;
     }
