@@ -17,7 +17,6 @@ public class FightResource {
     private static final Logger LOGGER = Logger.getLogger(FightResource.class);
     @Inject @RestClient HeroService heroService;
     @Inject @RestClient VillainService villainService;
-
     @GET
     @Path("/heroes/random")
     @Produces(MediaType.TEXT_PLAIN)
