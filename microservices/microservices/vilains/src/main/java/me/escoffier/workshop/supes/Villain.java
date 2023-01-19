@@ -1,9 +1,12 @@
 package me.escoffier.workshop.supes;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import javax.annotation.processing.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.util.Random;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
 
 @Entity
 public class Villain extends PanacheEntity {
@@ -16,7 +19,9 @@ public class Villain extends PanacheEntity {
     @Column(columnDefinition = "TEXT")
     public String powers;
 
-    public static Villain findRandom() {
+    @GET
+    @Path("/villain")
+    public Villain findRandom() {
         long countVillains = count();
         Random random = new Random();
         int randomVillain = random.nextInt((int) countVillains);
