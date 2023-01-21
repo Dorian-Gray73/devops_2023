@@ -1,13 +1,16 @@
 package me.escoffier.workshop.supes;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import java.util.Random;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import java.util.Random;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+
 @Entity
+@Path("/")
 public class Hero extends PanacheEntity implements Personnage{
 
     public String name;
@@ -25,6 +28,7 @@ public class Hero extends PanacheEntity implements Personnage{
         long countHeroes = Hero.count();
         Random random = new Random();
         int randomHero = random.nextInt((int) countHeroes);
+        System.out.println("Hello Damien");
         return (Personnage) Hero.findAll().page(randomHero, 1).firstResult();
     }
 
