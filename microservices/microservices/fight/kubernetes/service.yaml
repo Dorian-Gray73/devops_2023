@@ -6,7 +6,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: supes-fight
+    app: fight-micro
   ports:
   - port: 8080
     targetPort: http
