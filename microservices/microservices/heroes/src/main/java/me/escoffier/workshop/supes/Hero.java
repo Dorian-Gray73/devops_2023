@@ -1,16 +1,13 @@
 package me.escoffier.workshop.supes;
 
-import java.util.Random;
-
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import java.util.Random;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
-
 @Entity
-@Path("/")
 public class Hero extends PanacheEntity implements Personnage{
 
     public String name;
