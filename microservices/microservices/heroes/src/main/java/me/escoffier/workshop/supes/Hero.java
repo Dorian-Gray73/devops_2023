@@ -8,7 +8,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
 @Entity
-public class Hero extends PanacheEntity {
+public class Hero extends PanacheEntity implements Personnage{
 
     public String name;
     public String otherName;
@@ -18,13 +18,14 @@ public class Hero extends PanacheEntity {
     @Column(columnDefinition = "TEXT")
     public String powers;
 
+    @Override
     @GET
     @Path("/hero")
-    public Hero findRandom() {
+    public Personnage findRandom() {
         long countHeroes = Hero.count();
         Random random = new Random();
         int randomHero = random.nextInt((int) countHeroes);
-        return Hero.findAll().page(randomHero, 1).firstResult();
+        return (Personnage) Hero.findAll().page(randomHero, 1).firstResult();
     }
 
     @Override
@@ -37,5 +38,15 @@ public class Hero extends PanacheEntity {
                 ", picture='" + picture + '\'' +
                 ", powers='" + powers + '\'' +
                 '}';
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public int realStreng(int adjust) {
+        return level + adjust;
     }
 }
