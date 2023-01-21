@@ -7,6 +7,7 @@ import java.util.Random;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
+@Path("/")
 @Entity
 public class Villain extends PanacheEntity implements Personnage{
 
@@ -19,7 +20,7 @@ public class Villain extends PanacheEntity implements Personnage{
     public String powers;
 
     @GET
-    @Path("/villain")
+    @Path("/vilain")
     public Villain findRandom() {
         long countVillains = count();
         Random random = new Random();
