@@ -19,7 +19,6 @@ public class FightResource {
     @Inject @RestClient VillainService villainService;
     @GET
     @Path("/heroes/random")
-    @Produces(MediaType.TEXT_PLAIN)
     public Personnage getRandomHero() {
         Personnage hero = heroService.getHero();
         LOGGER.debug("Found random hero " + hero);
@@ -28,7 +27,6 @@ public class FightResource {
 
     @GET
     @Path("/villains/random")
-    @Produces(MediaType.TEXT_PLAIN)
     public Personnage getRandomVillain() {
         Personnage villain = villainService.getVillain();
         LOGGER.debug("Found random villain " + villain);
@@ -38,6 +36,7 @@ public class FightResource {
     @GET
     @Path("/fight")
     public Fight fight() {
+        System.out.println("Un truc");
         return fight(
                 getRandomHero(),
                 getRandomVillain()
