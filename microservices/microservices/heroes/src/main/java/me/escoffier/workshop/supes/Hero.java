@@ -28,7 +28,6 @@ public class Hero extends PanacheEntity implements Personnage{
         long countHeroes = Hero.count();
         Random random = new Random();
         int randomHero = random.nextInt((int) countHeroes);
-        System.out.println("Hello Damien");
         return (Personnage) Hero.findAll().page(randomHero, 1).firstResult();
     }
 
