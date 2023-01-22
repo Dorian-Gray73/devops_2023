@@ -1,15 +1,15 @@
 package me.escoffier.workshop.supes;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
-import javax.annotation.processing.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.util.Random;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
+@Path("/")
 @Entity
-public class Villain extends PanacheEntity {
+public class Villain extends PanacheEntity implements Personnage{
 
     public String name;
     public String otherName;
@@ -20,7 +20,7 @@ public class Villain extends PanacheEntity {
     public String powers;
 
     @GET
-    @Path("/villain")
+    @Path("/vilain")
     public Villain findRandom() {
         long countVillains = count();
         Random random = new Random();
@@ -38,5 +38,15 @@ public class Villain extends PanacheEntity {
                 ", picture='" + picture + '\'' +
                 ", powers='" + powers + '\'' +
                 '}';
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public int realStreng(int adjust) {
+        return level + adjust;
     }
 }

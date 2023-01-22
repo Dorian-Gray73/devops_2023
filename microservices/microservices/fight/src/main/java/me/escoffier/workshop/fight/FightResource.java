@@ -19,18 +19,16 @@ public class FightResource {
     @Inject @RestClient VillainService villainService;
     @GET
     @Path("/heroes/random")
-    @Produces(MediaType.TEXT_PLAIN)
-    public Hero getRandomHero() {
-        Hero hero = heroService.getHero();
+    public Personnage getRandomHero() {
+        Personnage hero = heroService.getHero();
         LOGGER.debug("Found random hero " + hero);
         return hero;
     }
 
     @GET
     @Path("/villains/random")
-    @Produces(MediaType.TEXT_PLAIN)
-    public Villain getRandomVillain() {
-        Villain villain = villainService.getVillain();
+    public Personnage getRandomVillain() {
+        Personnage villain = villainService.getVillain();
         LOGGER.debug("Found random villain " + villain);
         return villain;
     }
@@ -38,6 +36,7 @@ public class FightResource {
     @GET
     @Path("/fight")
     public Fight fight() {
+        System.out.println("Un truc");
         return fight(
                 getRandomHero(),
                 getRandomVillain()
@@ -46,14 +45,14 @@ public class FightResource {
 
     private final Random random = new Random();
 
-    private Fight fight(Hero hero, Villain villain) {
+    private Fight fight(Personnage hero, Personnage villain) {
         int heroAdjust = random.nextInt(20);
         int villainAdjust = random.nextInt(20);
 
-        if ((hero.level + heroAdjust) >= (villain.level + villainAdjust)) {
-            return new Fight(hero, villain, hero.name);
+        if ((hero.realStreng(heroAdjust)) >= (villain.realStreng(villainAdjust))) {
+            return new Fight(hero, villain, hero.getName());
         } else {
-            return new Fight(hero, villain, villain.name);
+            return new Fight(hero, villain, villain.getName());
         }
     }
 

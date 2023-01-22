@@ -2,24 +2,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: supes-monolith
+  name: supes-hero
   labels:
-    app: supes-monolith
+    app: supes-hero
 spec:
   replicas: 1
   strategy:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: supes-monolith
+      app: supes-hero
   template:
     metadata:
       labels:
-        app: supes-monolith
+        app: supes-hero
     spec:
       containers:
-      - name: supes-monolith
-        image: workshop/supes-monolith:latest
+      - name: supes-hero
+        image: hero:latest
         ports:
         - name: http
           containerPort: 8080
@@ -40,3 +40,23 @@ spec:
               secretKeyRef:
                 name: supes-database-secret
                 key: password
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /q/health/live
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 0
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 10
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /q/health/ready
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 0
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 10

@@ -2,11 +2,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: fight-monolith
+  name: fight-micro
 spec:
   type: LoadBalancer
   selector:
-    app: fight-monolith
+    app: supes-fight
   ports:
   - port: 8080
     targetPort: http

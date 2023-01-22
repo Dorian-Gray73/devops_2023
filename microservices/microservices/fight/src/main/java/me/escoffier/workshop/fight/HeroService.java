@@ -6,14 +6,13 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.time.temporal.ChronoUnit;
 
-@RegisterRestClient(configKey = "hero-service")
-@Produces(MediaType.TEXT_PLAIN)
+@RegisterRestClient(configKey = "supes-hero")
+@Produces(MediaType.APPLICATION_JSON)
 public interface HeroService {
 
     @Path("/hero")
     @GET
-    Hero getHero();
+    Personnage getHero();
 
 }
