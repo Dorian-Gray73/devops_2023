@@ -9,7 +9,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.Random;
 
 @RegisterRestClient(configKey = "supes-hero")
-@Produces(MediaType.APPLICATION_JSON)
+@Produces(MediaType.TEXT_PLAIN)
 public interface HeroService {
 
     @Path("/hero")
