@@ -4,7 +4,7 @@ kind: Service
 metadata:
   name: supes-hero
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: supes-hero
   ports:

@@ -4,7 +4,7 @@ kind: Service
 metadata:
   name: supes-vilain
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: supes-vilain
   ports:
