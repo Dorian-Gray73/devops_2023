@@ -7,7 +7,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@RegisterRestClient(configKey = "villain-service")
+@RegisterRestClient(configKey = "supes-vilain")
 @Produces(MediaType.TEXT_PLAIN)
 public interface VillainService {
 
