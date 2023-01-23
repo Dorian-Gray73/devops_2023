@@ -4,12 +4,9 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.util.Random;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
 
-@Path("/")
 @Entity
-public class Villain extends PanacheEntity implements Personnage{
+public class Villain extends PanacheEntity{
 
     public String name;
     public String otherName;
@@ -19,15 +16,12 @@ public class Villain extends PanacheEntity implements Personnage{
     @Column(columnDefinition = "TEXT")
     public String powers;
 
-    @GET
-    @Path("/vilain")
-    public Villain findRandom() {
+    public static Villain findRandom() {
         long countVillains = count();
         Random random = new Random();
         int randomVillain = random.nextInt((int) countVillains);
         return findAll().page(randomVillain, 1).firstResult();
     }
-
     @Override
     public String toString() {
         return "Villain{" +
@@ -38,15 +32,5 @@ public class Villain extends PanacheEntity implements Personnage{
                 ", picture='" + picture + '\'' +
                 ", powers='" + powers + '\'' +
                 '}';
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public int realStreng(int adjust) {
-        return level + adjust;
     }
 }

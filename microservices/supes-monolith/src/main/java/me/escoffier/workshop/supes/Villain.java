@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import java.util.Random;
 
 @Entity
-public class Villain extends PanacheEntity {
+public class Villain extends PanacheEntity{
 
     public String name;
     public String otherName;
@@ -22,7 +22,6 @@ public class Villain extends PanacheEntity {
         int randomVillain = random.nextInt((int) countVillains);
         return findAll().page(randomVillain, 1).firstResult();
     }
-
     @Override
     public String toString() {
         return "Villain{" +

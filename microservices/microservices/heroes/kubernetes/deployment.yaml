@@ -6,7 +6,7 @@ metadata:
   labels:
     app: supes-hero
 spec:
-  replicas: 1
+  replicas: 2
   strategy:
     type: RollingUpdate
   selector:
@@ -18,45 +18,25 @@ spec:
         app: supes-hero
     spec:
       containers:
-      - name: supes-hero
-        image: hero:latest
-        ports:
-        - name: http
-          containerPort: 8080
-        imagePullPolicy: IfNotPresent
-        env:
-          - name: QUARKUS_DATASOURCE_URL
-            valueFrom:
-              configMapKeyRef:
-                name: supes-config
-                key: database
-          - name: QUARKUS_DATASOURCE_USERNAME
-            valueFrom:
-              secretKeyRef:
-                name: supes-database-secret
-                key: username
-          - name: QUARKUS_DATASOURCE_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: supes-database-secret
-                key: password
-        livenessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /q/health/live
-            port: 8080
-            scheme: HTTP
-          initialDelaySeconds: 0
-          periodSeconds: 30
-          successThreshold: 1
-          timeoutSeconds: 10
-        readinessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /q/health/ready
-            port: 8080
-            scheme: HTTP
-          initialDelaySeconds: 0
-          periodSeconds: 30
-          successThreshold: 1
-          timeoutSeconds: 10
+        - name: supes-hero
+          image: hero:1.1
+          ports:
+            - name: http
+              containerPort: 8080
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: QUARKUS_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: supes-hero
+                  key: database
+            - name: QUARKUS_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: hero-database-secret
+                  key: username
+            - name: QUARKUS_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: hero-database-secret
+                  key: password
