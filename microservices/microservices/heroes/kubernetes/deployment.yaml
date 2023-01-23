@@ -50,13 +50,13 @@ spec:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 10
-            readinessProbe:
-              failureThreshold: 3
-              httpGet:
-                path: /q/health/ready
-                port: 8080
-                scheme: HTTP
-              initialDelaySeconds: 0
-              periodSeconds: 30
-              successThreshold: 1
-              timeoutSeconds: 10
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /q/health/ready
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 0
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 10
