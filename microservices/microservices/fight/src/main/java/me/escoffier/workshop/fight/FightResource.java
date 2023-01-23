@@ -1,7 +1,7 @@
 package me.escoffier.workshop.fight;
 
-import org.jboss.logging.Logger;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
+import org.jboss.logging.Logger;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -17,20 +17,15 @@ public class FightResource {
     private static final Logger LOGGER = Logger.getLogger(FightResource.class);
     @Inject @RestClient HeroService heroService;
     @Inject @RestClient VillainService villainService;
-    @GET
-    @Path("/heroes/random")
-    @Produces(MediaType.TEXT_PLAIN)
-    public Personnage getRandomHero() {
-        Personnage hero = heroService.getHero();
+
+    public Hero getRandomHero() {
+        Hero hero = heroService.getHero();
         LOGGER.debug("Found random hero " + hero);
         return hero;
     }
 
-    @GET
-    @Path("/villains/random")
-    @Produces(MediaType.TEXT_PLAIN)
-    public Personnage getRandomVillain() {
-        Personnage villain = villainService.getVillain();
+    public Villain getRandomVillain() {
+        Villain villain = villainService.getVillain();
         LOGGER.debug("Found random villain " + villain);
         return villain;
     }
@@ -46,15 +41,14 @@ public class FightResource {
 
     private final Random random = new Random();
 
-    private Fight fight(Personnage hero, Personnage villain) {
+    private Fight fight(Hero hero, Villain villain) {
         int heroAdjust = random.nextInt(20);
         int villainAdjust = random.nextInt(20);
 
-        if ((hero.realStreng(heroAdjust)) >= (villain.realStreng(villainAdjust))) {
-            return new Fight(hero, villain, hero.getName());
+        if ((hero.level + heroAdjust) >= (villain.level + villainAdjust)) {
+            return new Fight(hero, villain, hero.name);
         } else {
-            return new Fight(hero, villain, villain.getName());
+            return new Fight(hero, villain, villain.name);
         }
     }
-
 }

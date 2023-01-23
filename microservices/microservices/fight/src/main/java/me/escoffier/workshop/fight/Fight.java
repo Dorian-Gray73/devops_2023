@@ -2,8 +2,8 @@ package me.escoffier.workshop.fight;
 
 public class Fight {
 
-    public Personnage hero;
-    public Personnage villain;
+    public Hero hero;
+    public Villain villain;
 
     public String winner;
 
@@ -11,7 +11,7 @@ public class Fight {
         // USed by mapper
     }
 
-    public Fight(Personnage h, Personnage v, String w) {
+    public Fight(Hero h, Villain v, String w) {
         hero = h;
         villain = v;
         winner = w;

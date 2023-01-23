@@ -6,13 +6,14 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.util.Random;
 
 @RegisterRestClient(configKey = "supes-hero")
-@Produces(MediaType.TEXT_PLAIN)
+@Produces(MediaType.APPLICATION_JSON)
 public interface HeroService {
 
     @Path("/hero")
     @GET
-    Personnage getHero();
+    Hero getHero();
 
 }
