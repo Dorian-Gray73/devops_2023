@@ -2,61 +2,42 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: supes-vilain
+  name: supes-villain
   labels:
-    app: supes-vilain
+    app: supes-villain
 spec:
-  replicas: 1
+  replicas: 2
   strategy:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: supes-vilain
+      app: supes-villain
   template:
     metadata:
       labels:
-        app: supes-vilain
+        app: supes-villain
     spec:
       containers:
-      - name: supes-vilain
-        image: vilain:latest
-        ports:
-        - name: http
-          containerPort: 8080
-        imagePullPolicy: IfNotPresent
-        env:
-          - name: QUARKUS_DATASOURCE_URL
-            valueFrom:
-              configMapKeyRef:
-                name: supes-config
-                key: database
-          - name: QUARKUS_DATASOURCE_USERNAME
-            valueFrom:
-              secretKeyRef:
-                name: supes-database-secret
-                key: username
-          - name: QUARKUS_DATASOURCE_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: supes-database-secret
-                key: password
-        livenessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /q/health/live
-            port: 8080
-            scheme: HTTP
-          initialDelaySeconds: 0
-          periodSeconds: 30
-          successThreshold: 1
-          timeoutSeconds: 10
-        readinessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /q/health/ready
-            port: 8080
-            scheme: HTTP
-          initialDelaySeconds: 0
-          periodSeconds: 30
-          successThreshold: 1
-          timeoutSeconds: 10
+        - name: supes-villain
+          image: villain:latest
+          ports:
+            - name: http
+              containerPort: 8080
+          imagePullPolicy: IfNotPresent
+
+          env:
+            - name: QUARKUS_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: supes-villain
+                  key: database
+            - name: QUARKUS_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: villain-database-secret
+                  key: username
+            - name: QUARKUS_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: villain-database-secret
+                  key: password

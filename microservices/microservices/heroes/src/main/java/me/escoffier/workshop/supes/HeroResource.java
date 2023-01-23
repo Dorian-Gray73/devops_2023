@@ -1,4 +1,5 @@
-package me.fjbt.workshop.supes;
+package me.escoffier.workshop.supes;
+
 
 import org.jboss.logging.Logger;
 
@@ -14,7 +15,7 @@ public class HeroResource {
     private static final Logger LOGGER = Logger.getLogger(HeroResource.class);
 
     @GET
-    @Path("/heroes/random")
+    @Path("/hero")
     public Hero getRandomHero() {
         Hero hero = Hero.findRandom();
         LOGGER.debug("Found random hero " + hero);

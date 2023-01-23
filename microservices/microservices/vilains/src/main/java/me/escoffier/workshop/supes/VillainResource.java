@@ -1,4 +1,4 @@
-package me.fjbt.workshop.supes;
+package me.escoffier.workshop.supes;
 
 import org.jboss.logging.Logger;
 
@@ -14,7 +14,7 @@ public class VillainResource {
     private static final Logger LOGGER = Logger.getLogger(VillainResource.class);
 
     @GET
-    @Path("/villains/random")
+    @Path("/villain")
     public Villain getRandomVillain() {
         Villain villain = Villain.findRandom();
         LOGGER.debug("Found random villain " + villain);
