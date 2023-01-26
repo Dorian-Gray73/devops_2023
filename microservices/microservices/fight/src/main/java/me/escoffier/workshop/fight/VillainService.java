@@ -26,9 +26,9 @@ public interface VillainService {
         Villain villain = new Villain();
         villain.name = "Hannibal Lecter";
         villain.otherName = "Hannibal the Cannibal";
-        villain.level = 45;
+        villain.level = 50;
         villain.id = (long) 15151;
-        villain.picture = "pathToPicture";
+        villain.picture = "https://github.com/Dorian-Gray73/devops_2023/blob/liveness/microservices/microservices/fight/src/main/resources/images/Hannibal_Lecter_in_Silence_of_the_Lambs.jpg?raw=true";
         return villain;
     }
 }

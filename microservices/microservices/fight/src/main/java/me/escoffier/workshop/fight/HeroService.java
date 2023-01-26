@@ -28,7 +28,7 @@ public interface HeroService {
         hero.otherName = "Elizabeth Keen";
         hero.level = 45;
         hero.id = (long) 56548;
-        hero.picture = "pathToPicture";
+        hero.picture = "https://github.com/Dorian-Gray73/devops_2023/blob/liveness/microservices/microservices/fight/src/main/resources/images/Liz.jpg?raw=true";
         return hero;
     }
 }

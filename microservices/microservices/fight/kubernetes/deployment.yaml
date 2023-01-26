@@ -25,22 +25,22 @@ spec:
           containerPort: 8080
         imagePullPolicy: IfNotPresent
         livenessProbe:
-            failureThreshold: 3
+            failureThreshold: 1
             httpGet:
               path: /q/health/live
               port: 8080
               scheme: HTTP
-            initialDelaySeconds: 0
-            periodSeconds: 30
+            initialDelaySeconds: 30
+            periodSeconds: 5
             successThreshold: 1
-            timeoutSeconds: 10
+            timeoutSeconds: 3
         readinessProbe:
-            failureThreshold: 3
+            failureThreshold: 1
             httpGet:
               path: /q/health/ready
               port: 8080
               scheme: HTTP
-            initialDelaySeconds: 0
-            periodSeconds: 30
+            initialDelaySeconds: 30
+            periodSeconds: 5
             successThreshold: 1
             timeoutSeconds: 10
