@@ -6,7 +6,6 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-import java.util.Random;
 
 @Entity
 public class Hero extends PanacheEntity{

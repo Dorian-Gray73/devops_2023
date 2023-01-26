@@ -1,5 +1,7 @@
 package me.escoffier.workshop.fight;
 
+import io.micrometer.core.annotation.Counted;
+import io.micrometer.core.annotation.Timed;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.logging.Logger;
 
@@ -15,8 +17,12 @@ import java.util.Random;
 public class FightResource {
 
     private static final Logger LOGGER = Logger.getLogger(FightResource.class);
-    @Inject @RestClient HeroService heroService;
-    @Inject @RestClient VillainService villainService;
+    @Inject
+    @RestClient
+    HeroService heroService;
+    @Inject
+    @RestClient
+    VillainService villainService;
 
     public Hero getRandomHero() {
         Hero hero = heroService.getHero();
@@ -31,12 +37,13 @@ public class FightResource {
     }
 
     @GET
+    @Counted("supes-fight.fight.invocations")
+    @Timed("supes-fight.fight.time")
     @Path("/fight")
     public Fight fight() {
         return fight(
                 getRandomHero(),
-                getRandomVillain()
-        );
+                getRandomVillain());
     }
 
     private final Random random = new Random();
